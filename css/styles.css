@@ -1,0 +1,458 @@
+:root {
+    --red:       #8B1A1A;
+    --red-light: #B22222;
+    --red-dark:  #5C0F0F;
+    --cream:     #FAF6F0;
+    --white:     #FFFFFF;
+    --gray:      #6B6B6B;
+    --light-gray:#F0EBE3;
+    --shadow:    rgba(139,26,26,0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: #2a1a1a;
+    overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 20px var(--shadow);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 70px;
+    transition: all .3s ease;
+    }
+    .nav-logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+    }
+    .nav-logo img {
+    height: 48px; width: 48px; object-fit: contain; border-radius: 8px;
+    }
+    .nav-logo span {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.5rem; color: var(--red);
+    letter-spacing: .5px;
+    }
+    .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+    text-decoration: none; font-weight: 700; font-size: .95rem;
+    color: var(--red-dark); position: relative; padding: 4px 0;
+    transition: color .25s;
+    }
+    .nav-links a::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+    height: 2px; background: var(--red); transform: scaleX(0);
+    transition: transform .25s ease; transform-origin: left;
+    }
+    .nav-links a:hover { color: var(--red); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta {
+    background: var(--red); color: #fff !important;
+    padding: 8px 20px !important; border-radius: 25px;
+    transition: background .25s, transform .2s !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--red-dark) !important; transform: translateY(-2px); }
+
+    /* hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; height: 3px; width: 26px; background: var(--red); border-radius: 3px; transition: .3s; }
+
+    /* ── HERO ── */
+    #hero {
+    min-height: 100vh;
+    background: var(--red);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; padding-top: 70px;
+    }
+    .hero-bg-pattern {
+    position: absolute; inset: 0; opacity: .07;
+    background-image: repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);
+    background-size: 30px 30px;
+    }
+    .hero-rays {
+    position: absolute; right: -5%; top: 10%;
+    width: 55%; height: 80%;
+    background: radial-gradient(ellipse at 80% 50%, rgba(255,255,255,.15) 0%, transparent 65%);
+    pointer-events: none;
+    }
+    .hero-content {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+    gap: 6%; width: 90%; max-width: 1200px;
+    flex-wrap: wrap; text-align: center;
+    }
+    .hero-text { flex: 1; min-width: 280px; }
+    .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,.18);
+    color: #fff;
+    font-size: .8rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+    padding: 6px 18px; border-radius: 20px; margin-bottom: 1.2rem;
+    animation: fadeDown .8s ease both;
+    }
+    .hero-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    color: #fff; line-height: 1.05;
+    animation: fadeDown .9s .1s ease both;
+    }
+    .hero-title span { color: #FFCFCF; }
+    .hero-sub {
+    margin-top: 1.2rem;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: rgba(255,255,255,.85); font-weight: 600; line-height: 1.6;
+    animation: fadeDown .9s .2s ease both;
+    }
+    .hero-buttons {
+    margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeDown .9s .35s ease both;
+    }
+    .btn-primary {
+    background: #fff; color: var(--red);
+    font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem;
+    padding: 14px 32px; border-radius: 30px; border: none; cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+    text-decoration: none; display: inline-block;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,.25); }
+    .btn-outline {
+    background: transparent; color: #fff;
+    font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem;
+    padding: 13px 32px; border-radius: 30px; border: 2px solid rgba(255,255,255,.7);
+    cursor: pointer; transition: background .2s, transform .2s;
+    text-decoration: none; display: inline-block;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.1); transform: translateY(-3px); }
+
+    .hero-logo-wrap {
+    flex: 0 0 auto; animation: floatIn 1s .3s ease both;
+    }
+    .hero-logo-wrap img {
+    width: clamp(180px, 28vw, 320px);
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,.35));
+    border-radius: 18px;
+    }
+
+    /* floating pencils deco */
+    .deco {
+    position: absolute; font-size: 2.5rem; opacity: .12;
+    animation: floatDeco 6s ease-in-out infinite;
+    user-select: none; pointer-events: none;
+    }
+    .deco:nth-child(1) { top: 12%; left: 5%; animation-delay: 0s; }
+    .deco:nth-child(2) { top: 70%; left: 8%; animation-delay: 1.5s; font-size: 2rem; }
+    .deco:nth-child(3) { top: 20%; right: 12%; animation-delay: .8s; font-size: 3rem; }
+    .deco:nth-child(4) { bottom: 15%; right: 6%; animation-delay: 2s; font-size: 2.2rem; }
+    .deco:nth-child(5) { top: 45%; left: 2%; animation-delay: 3s; font-size: 1.8rem; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 90px 5%; }
+    .section-tag {
+    display: inline-block;
+    background: rgba(139,26,26,.1);
+    color: var(--red);
+    font-size: .75rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 20px; margin-bottom: .8rem;
+    }
+    .section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2rem, 5vw, 3rem); color: var(--red-dark);
+    line-height: 1.1;
+    }
+    .section-title span { color: var(--red); }
+    .section-subtitle {
+    margin-top: .7rem; font-size: 1.05rem; color: var(--gray); font-weight: 600; max-width: 550px;
+    }
+
+    /* ── SOBRE ── */
+    #sobre { background: var(--cream); }
+    .sobre-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; gap: 6%; align-items: center; flex-wrap: wrap;
+    }
+    .sobre-text { flex: 1; min-width: 280px; }
+    .sobre-text p {
+    margin-top: 1.2rem; font-size: 1.05rem; line-height: 1.8; color: #3a2a2a; font-weight: 600;
+    }
+    .sobre-stats {
+    flex: 0 0 auto; display: flex; flex-direction: column; gap: 1rem;
+    }
+    .stat-card {
+    background: var(--white); border-radius: 18px;
+    padding: 22px 30px; text-align: center;
+    box-shadow: 0 6px 24px var(--shadow);
+    border-left: 5px solid var(--red);
+    transition: transform .25s;
+    }
+    .stat-card:hover { transform: translateX(6px); }
+    .stat-card strong {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.2rem; color: var(--red); display: block;
+    }
+    .stat-card span { font-size: .9rem; font-weight: 700; color: var(--gray); }
+
+    /* ── SERVIÇOS ── */
+    #servicos { background: var(--light-gray); }
+    .servicos-grid {
+    max-width: 1200px; margin: 3rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 1.5rem;
+    }
+    .service-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 32px 28px;
+    box-shadow: 0 4px 20px var(--shadow);
+    position: relative; overflow: hidden;
+    transition: transform .3s, box-shadow .3s;
+    cursor: default;
+    }
+    .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(90deg, var(--red), var(--red-light));
+    }
+    .service-card:hover { transform: translateY(-8px); box-shadow: 0 14px 35px var(--shadow); }
+    .service-icon {
+    font-size: 2.8rem; margin-bottom: 1rem;
+    display: block;
+    animation: wobble 4s ease-in-out infinite;
+    }
+    .service-card:nth-child(2) .service-icon { animation-delay: .5s; }
+    .service-card:nth-child(3) .service-icon { animation-delay: 1s; }
+    .service-card:nth-child(4) .service-icon { animation-delay: 1.5s; }
+    .service-card:nth-child(5) .service-icon { animation-delay: 2s; }
+    .service-card:nth-child(6) .service-icon { animation-delay: 2.5s; }
+    .service-card h3 {
+    font-family: 'Fredoka One', cursive; font-size: 1.3rem; color: var(--red-dark); margin-bottom: .5rem;
+    }
+    .service-card p { font-size: .93rem; color: var(--gray); line-height: 1.65; font-weight: 600; }
+
+    /* ── AVALIAÇÕES ── */
+    #avaliacoes { background: var(--red); }
+    #avaliacoes .section-title { color: #fff; }
+    #avaliacoes .section-tag { background: rgba(255,255,255,.2); color: #fff; }
+    .reviews-track-wrap { overflow: hidden; margin-top: 2.5rem; position: relative; }
+    .reviews-track-wrap::before,
+    .reviews-track-wrap::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+    }
+    .reviews-track-wrap::before { left: 0; background: linear-gradient(to right, var(--red), transparent); }
+    .reviews-track-wrap::after { right: 0; background: linear-gradient(to left, var(--red), transparent); }
+    .reviews-track {
+    display: flex; gap: 1.5rem;
+    animation: scrollLeft 30s linear infinite;
+    width: max-content;
+    }
+    .reviews-track:hover { animation-play-state: paused; }
+    .review-card {
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.2);
+    backdrop-filter: blur(8px);
+    border-radius: 18px; padding: 24px 28px;
+    min-width: 280px; max-width: 300px;
+    flex-shrink: 0;
+    transition: transform .2s;
+    }
+    .review-card:hover { transform: scale(1.03); }
+    .review-stars { color: #FFD700; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: .6rem; }
+    .review-text { font-size: .95rem; color: rgba(255,255,255,.9); line-height: 1.6; font-weight: 600; font-style: italic; }
+    .review-author {
+    margin-top: 1rem; display: flex; align-items: center; gap: 10px;
+    }
+    .review-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(255,255,255,.25);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: .95rem; color: #fff;
+    flex-shrink: 0;
+    }
+    .review-name { font-weight: 800; font-size: .9rem; color: #fff; }
+    .review-date { font-size: .78rem; color: rgba(255,255,255,.6); font-weight: 600; }
+
+    /* ── LOCALIZAÇÃO ── */
+    #localizacao { background: var(--cream); }
+    .localizacao-inner {
+    max-width: 1100px; margin: 3rem auto 0;
+    display: flex; gap: 4%; flex-wrap: wrap; align-items: flex-start;
+    }
+    .localizacao-info { flex: 1; min-width: 260px; }
+    .info-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: var(--white); border-radius: 16px; padding: 18px 20px;
+    margin-bottom: 1rem; box-shadow: 0 4px 16px var(--shadow);
+    transition: transform .2s;
+    }
+    .info-item:hover { transform: translateX(4px); }
+    .info-icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 2px; }
+    .info-text strong { display: block; font-weight: 800; color: var(--red-dark); margin-bottom: 3px; }
+    .info-text span { font-size: .93rem; color: var(--gray); font-weight: 600; line-height: 1.5; }
+    .map-wrap {
+    flex: 2; min-width: 280px;
+    border-radius: 20px; overflow: hidden;
+    box-shadow: 0 8px 30px var(--shadow);
+    height: 380px;
+    }
+    .map-wrap iframe { width: 100%; height: 100%; border: none; }
+
+    /* ── FOOTER ── */
+    footer {
+    background: var(--red-dark);
+    color: rgba(255,255,255,.8);
+    padding: 60px 5% 30px;
+    }
+    .footer-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2.5rem; padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255,255,255,.15);
+    }
+    .footer-brand .footer-logo-name {
+    font-family: 'Fredoka One', cursive; font-size: 1.8rem; color: #fff; margin-top: .5rem;
+    }
+    .footer-brand p { margin-top: .7rem; font-size: .93rem; line-height: 1.7; font-weight: 600; }
+    .footer-col h4 {
+    font-family: 'Fredoka One', cursive; color: #fff; font-size: 1.1rem; margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .5rem; }
+    .footer-col ul li a {
+    text-decoration: none; color: rgba(255,255,255,.75); font-weight: 600; font-size: .93rem;
+    transition: color .2s;
+    }
+    .footer-col ul li a:hover { color: #fff; }
+    .footer-bottom {
+    max-width: 1100px; margin: 1.8rem auto 0;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    font-size: .85rem; color: rgba(255,255,255,.5); font-weight: 600;
+    }
+    .footer-social { display: flex; gap: .7rem; }
+    .soc-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+    display: flex; align-items: center; justify-content: center; font-size: 1rem;
+    text-decoration: none; transition: background .2s, transform .2s;
+    }
+    .soc-btn:hover { background: rgba(255,255,255,.25); transform: scale(1.1); }
+
+    /* ============================================
+BOTÃO FLUTUANTE WHATSAPP
+============================================ */
+.whatsapp-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 65px;
+    height: 65px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 25px rgba(37, 211, 102, 0.5);
+    z-index: 999;
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 35px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-float svg {
+    width: 35px;
+    height: 35px;
+    fill: var(--white);
+}
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-24px); }
+    to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes floatIn {
+    from { opacity: 0; transform: translateX(40px) scale(.9); }
+    to   { opacity: 1; transform: translateX(0) scale(1); }
+    }
+    @keyframes floatDeco {
+    0%,100% { transform: translateY(0) rotate(-5deg); }
+    50%      { transform: translateY(-18px) rotate(5deg); }
+    }
+    @keyframes wobble {
+    0%,100% { transform: rotate(0deg); }
+    20%      { transform: rotate(-6deg); }
+    40%      { transform: rotate(5deg); }
+    60%      { transform: rotate(-3deg); }
+    80%      { transform: rotate(2deg); }
+    }
+    @keyframes scrollLeft {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+    }
+
+    /* reveal on scroll */
+    .reveal {
+    opacity: 0; transform: translateY(36px);
+    transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ── */
+    @media(max-width: 768px) {
+    .nav-links { 
+        display: none; 
+        flex-direction: column; 
+        position: absolute; 
+        top: 70px; left: 0; 
+        right: 0;
+        background: #fff; 
+        padding: 1rem 5% 1.5rem; 
+        box-shadow: 0 8px 20px var(--shadow); 
+    }
+    .nav-links.open { 
+        display: flex; 
+    }
+    .hamburger { 
+        display: flex; 
+    }
+    .hero-content { 
+        flex-direction: column-reverse; 
+        gap: 2rem; 
+    }
+    .sobre-stats { 
+        flex-direction: row; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+    }
+    .stat-card { 
+        min-width: 130px; 
+    }
+    .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .whatsapp-float svg {
+        width: 28px;
+        height: 28px;
+    }
+    }
+
+    
